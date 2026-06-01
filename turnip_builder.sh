@@ -19,6 +19,7 @@ clear
 #You can insert your own function and make a pull request.
 run_all(){
 	echo "====== Begin building TU V$BUILD_VERSION! ======"
+	echo "Current directory: $(pwd)"
 	check_deps
 	prepare_workdir
 	# This has path slash in the branch name and thus needs some workarounds
