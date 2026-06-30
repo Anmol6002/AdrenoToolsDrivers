@@ -85,6 +85,22 @@ build_lib_for_android(){
 	fi
 	echo "Pushing TU_VERSION..."
 	echo "#define TUGEN8_DRV_VERSION \"v$BUILD_VERSION\"" > ./src/freedreno/vulkan/tu_version.h
+	# Apply Vulkan 1.4 API forcing and chip-family bypasses
+	TARGET_FILE="./src/freedreno/vulkan/tu_device.cc"
+	if [ -f "$TARGET_FILE" ]; then
+		echo "Patching $TARGET_FILE..."
+		sed -i 's|props->apiVersion = tu_has_multiview(pdevice) ?|props->apiVersion = TU_API_VERSION; //|g' "$TARGET_FILE"
+		sed -i 's|return tu_has_multiview(device);|return true;|' "$TARGET_FILE"
+		sed -i 's|return device->info->props.has_hw_multiview \|\| TU_DEBUG(NOCONFORM);|return true;|' "$TARGET_FILE"
+		sed -i 's|if (pdevice->info->chip >= 7)|if (true)|g' "$TARGET_FILE"
+		sed -i 's|pdevice->info->chip >= 7|pdevice->info->chip >= 6|g' "$TARGET_FILE"
+		sed -i 's|pdevice->info->chip >= 8|pdevice->info->chip >= 6|g' "$TARGET_FILE"
+		sed -i 's|device->info->chip >= 7|device->info->chip >= 6|g' "$TARGET_FILE"
+		echo "Patches applied successfully."
+	else
+		echo "Error: $TARGET_FILE not found!"
+		exit 1
+	fi
 	#Workaround for using Clang as c compiler instead of GCC
 	mkdir -p "$workdir/bin"
 	ln -sf "$ndk/clang" "$workdir/bin/cc"
