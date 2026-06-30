@@ -32,8 +32,8 @@ jobs:
       with:
         body: |
           A8XX Turnip Vulkan V${{ inputs.version }}
-          Built from: https://github.com/whitebelyash/mesa-unified (turnip/gen8 branch)
-          
+          Built from: https://github.com/Anmol6002/mesa-unified (turnip/gen8 branch)
+          Anmol6002:- i just forked from whitebelyash repo 
           I didn't test this this much. Contact me on FEX (#android-wastelands) or EmuCore discord if there are any issues.
 
           
