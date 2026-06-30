@@ -33,7 +33,11 @@ jobs:
         body: |
           A8XX Turnip Vulkan V${{ inputs.version }}
           Built from: https://github.com/Anmol6002/mesa-unified (turnip/gen8 branch)
-          Anmol6002:- i just forked from whitebelyash repo 
+          Anmol6002:- i just forked from whitebelyash repo , and there are two versions one -R2 and second -R3
+          -R2:- test (previously released) build by Just adding a613 unofficial support works normally maybe only one release not gonna build again will push to original mess-unified source code of whitebelyash
+          -R3:- this build going to be forever specialised build for a613 and other a6xx devices forcing vulkan 1.4 and opening other code paths bypassing family chip only tested on a613 so test on your own on others 
+          these builds are going to be based on whitebelyash mesa-unified source obviously i am not a dev just compiling and doing and getting a bit of know how via AI that is.
+          everything else is written below 👇🏻 by whitebelyash 
           I didn't test this this much. Contact me on FEX (#android-wastelands) or EmuCore discord if there are any issues.
 
           
